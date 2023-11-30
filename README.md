@@ -1,4 +1,6 @@
-# backend
+# Pomelo Bonus!
+
+For a bonus add-on to the credit card payment coding assessment, I created a backend api server with Bun.js (download [here](https://bun.sh/)) that allows you to send http requests to make the six different kinds of changes to your credit account as they were in the coding assessment. 
 
 To install dependencies:
 
@@ -6,10 +8,8 @@ To install dependencies:
 bun install
 ```
 
-To run:
+To run locally:
 
 ```bash
 bun run index.ts
 ```
-
-This project was created using `bun init` in bun v1.0.0. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
