@@ -103,8 +103,9 @@ interface Transaction {
     time: Date
 }
 
-
+const PORT = 3000
 Bun.serve({
+    port: PORT,
     fetch(req: Request) {            
 
         console.log(req.headers.get('Host'))
@@ -118,3 +119,4 @@ Bun.serve({
         return routes[lookup](req)
     }
 })
+console.log('Server started at port', PORT)
