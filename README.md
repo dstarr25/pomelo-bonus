@@ -17,3 +17,18 @@ To run locally:
 ```bash
 bun run index.ts
 ```
+
+To view the current account info, make a GET request to `localhost:3000`.
+
+And to make an account action, make a POST request to `localhost:3000` with a request body like the following:
+
+```json
+{
+    "eventType": "PAYMENT_POSTED",
+    "txnId": "t0",
+    "amount": -180
+}
+```
+- `eventType` is the type of action you are making on your account. Can be one of: `TXN_AUTHED`, `TXN_AUTH_CLEARED`, `TXN_SETTLED`, `PAYMENT_INITIATED`, `PAYMENT_CANCELED`, `PAYMENT_POSTED`
+- `txnId` is the id of the transaction or payment. different payments/transactions should have different `txnId`s
+- `amount` is the amount of the transaction or payment. this field is only used for actions with `eventType`: `TXN_AUTHED`, `TXN_SETTLED`, or `PAYMENT_INITIATED`
