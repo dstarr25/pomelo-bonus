@@ -74,20 +74,12 @@ function summarize() {
 const routes: { [key: string]: (req: Request) => Promise<Response> } = {
     'GET /': async (req) => {
         summarize()
-        const resp = Response.json({ pending, settled, availableCredit, payableBalance })
-        resp.headers.set('Access-Control-Allow-Origin', '*')
-        resp.headers.set('Content-Type', 'application/json')
-        return resp
+        return Response.json({ pending, settled, availableCredit, payableBalance })
     },
     'POST /': async (req) => {
         const event: Event = await req.json()
-        // return Response.json(event)
-
         eventFunctions[event.eventType](event)
-        const resp = Response.json({ pending, settled, availableCredit, payableBalance })
-        resp.headers.set('Access-Control-Allow-Origin', '*')
-        resp.headers.set('Content-Type', 'application/json')
-        return resp
+        return Response.json({ pending, settled, availableCredit, payableBalance })
     }
 }
 
@@ -107,15 +99,12 @@ const PORT = 3000
 Bun.serve({
     port: PORT,
     fetch(req: Request) {            
-
-        console.log(req.headers.get('Host'))
         const url = new URL(req.url)
         const method = req.method
         const lookup = method  + ' ' + url.pathname
 
         if (routes[lookup] === undefined) return new Response('404!')
 
-        
         return routes[lookup](req)
     }
 })
